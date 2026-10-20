@@ -1,0 +1,2 @@
+AI engineering requires reliable Python code.
+File handling is an important skill.
