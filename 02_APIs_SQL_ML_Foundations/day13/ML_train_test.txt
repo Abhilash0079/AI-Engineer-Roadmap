@@ -1,0 +1,31 @@
+## Understand the three concepts
+1. Train/test split
+We divide our dataset into two parts:
+Training data           80%         Used to teach the model patterns.
+Test data               20%         Used to evaluate the trained model on unseen examples.
+
+An 80/20 split is a common starting point, not a universal rule.
+
+2. Baseline model
+A baseline is a simple reference prediction that your trained model should aim to outperform.
+
+For example, if we predict exam scores, a simple baseline might always predict the average score from the training data.
+
+3. Data leakage
+Data leakage occurs when information that would not legitimately be available at prediction time influences model training or evaluation.
+
+Example: calculating an average using the entire dataset before splitting it, then using that average to fill missing values. Information from the test set has now influenced training preparation.
+
+Rule: Split the data first, learn preprocessing steps from training data only, and apply those learned steps to the test data.
+
+1. Why split the data? — Correct
+    More precisely, splitting alone doesn't prevent every kind of data leakage. It allows us to evaluate on held-out data, provided we don't use that test data during training or model selection.
+
+2. Why train the baseline only on training data? — Correct, with a clarification
+    The baseline learns the training-set average. If we calculate that average using the entire dataset, information from the test labels leaks into the baseline.
+
+3. Which model performs better? — Correct
+    The model with MAE 5 performs better than the baseline with MAE 12 on the evaluated test set. Lower MAE means smaller average absolute prediction errors.
+
+4. Suppose you're building a model to predict house prices. You calculate the average house price using the entire dataset before splitting it into training and test sets. Why is this a problem?
+    Calculating the average house price using the entire dataset before splitting causes data leakage because the test-set labels influence a value used during model preparation. This makes the evaluation less independent and potentially misleading. I should split the data first, calculate the average using training data only, and then apply the resulting value where appropriate.
