@@ -1,0 +1,219 @@
+Machine Learning Foundations
+
+## Lesson 1: What is Machine Learning?
+
+1. Understand the basic idea
+Machine learning (ML) is a branch of artificial intelligence that enables computers to learn patterns from data and use those patterns to make predictions or decisions, rather than requiring a programmer to write an explicit rule for every situation.
+
+Consider a simple example: predicting a student's exam score.
+                    Historical student data
+                            |
+                    Study hours, attendance, previous scores
+                            |
+                    Machine learning model
+                            |
+                    Learns patterns from examples
+
+
+Prediction
+Expected score: 85
+An illustrative prediction, not a guaranteed result
+
+
+The model might learn that students who study more tend to achieve higher scores. It uses the patterns it learned to estimate a score for a student it hasn't seen before.
+
+The prediction is not guaranteed to be correct. The quality of the result depends on the data, the model, and how well the learned patterns generalize to new examples.
+
+
+2. Traditional programming vs. machine learning
+
+Traditional programming
+                Rules written by a developer
+                            |
+                Input data + rules → Output
+
+Machine learning
+                Example data + correct answers
+                            |
+                Learning algorithm → Trained model
+                            |
+                New input → Prediction
+
+
+For example, in traditional programming, you might explicitly write a rule: if a student's score is 90 or above, assign grade A.
+
+In machine learning, you might give an algorithm many examples containing student information and their final grades. The algorithm learns patterns that can help predict grades for new students.
+
+Important: Traditional programming is not limited to fixed rules, and ML still relies on code written by developers. The key difference is how the decision-making rules are obtained.
+
+
+3. What is an ML model?
+An ML model is the result of a learning process. It captures patterns or relationships learned from training data and uses them to make predictions on new data.
+
+Three terms to understand:
+- Algorithm: The learning procedure used to build a model.
+- Training: The process of learning patterns from data.
+- Model: The learned result used to make predictions.
+For example, Linear Regression is an algorithm. After training it on student data, the fitted model can predict exam scores.
+
+4. The three main types of machine learning
+a. Supervised learning
+    The model learns from examples that include the correct answers, called labels.
+    Examples: exam-score prediction, spam detection, house-price prediction.
+    Main tasks: regression and classification.
+
+b. Unsupervised learning
+    The model looks for patterns in data without supplied target labels.
+    Examples: customer segmentation, grouping similar documents, discovering clusters.
+
+c. Reinforcement learning
+    An agent learns through interactions with an environment, receiving rewards or penalties that guide its behavior.
+    Examples: game-playing agents, robotics, sequential decision-making.
+
+A useful way to remember the difference:
+Type	        What learning is based on
+Supervised	    Labeled examples
+Unsupervised	Patterns in unlabeled data
+Reinforcement	Actions, feedback and rewards
+
+5. Interview preparation
+Question: What is machine learning?
+
+A strong interview answer:
+Machine learning is a branch of artificial intelligence that enables systems to learn patterns from data and make predictions or decisions without explicitly programming every rule. A model is trained using an appropriate learning algorithm and data, then evaluated to determine how well it performs on unseen examples. Common types include supervised learning, unsupervised learning, and reinforcement learning.
+
+Follow-up question: Is machine learning the same as AI?
+
+No. Artificial intelligence is the broader field concerned with creating systems that perform tasks associated with intelligence. Machine learning is one approach within AI. Not every AI system needs to use machine learning.
+
+
+## Lesson 2: Features and Labels
+1. What are features?
+    Features are the input variables that a machine learning model uses to learn patterns or make predictions.
+
+Imagine that we want to predict a student's exam score.
+        Study_hours	Attendance (%)	Previous_score	Exam_score
+            2	        65	            60	            62
+            4	        80	            72	            76
+            6	        90	            85	            89
+            8	        95	            92	            96
+
+In this example, the model uses the first three columns to predict the final column.
+- Study_hours — a feature.
+- Attendance — a feature.
+- Previous_score — a feature.
+- Exam_score — the target we want to predict.
+
+Features can be numerical, such as age or salary, or categorical, such as department, city, or product type. Categorical features often need to be encoded before many ML algorithms can use them.
+
+2. What is a label?
+In supervised learning, a label is the correct answer associated with a training example. In many tabular ML problems, the label is the target variable the model is trained to predict.
+
+Using the student example:
+- Features (X): study hours, attendance, previous score.
+- Label/target (y): exam score.
+
+How the data is divided conceptually
+Features — X
+Study hours · Attendance · Previous score
+            |
+Learning algorithm
+Learns relationships between X and y
+            |
+Label — y
+The known exam score used as the training target
+
+During training, the model uses both the features and their known labels to learn a relationship. Later, it predicts labels for new examples using their features.
+
+In Python and scikit-learn, you'll commonly see X for the feature matrix and y for the target values. The capital X is conventional because the features are usually arranged as a two-dimensional table; y is usually a one-dimensional sequence of targets.
+
+3. What are training data and testing data?
+A model should not be evaluated only on the examples it learned from. Otherwise, we might think it performs well simply because it has already seen those examples.
+
+The solution is to divide the available labeled dataset into separate parts.
+
+A typical train–test split
+
+Entire dataset: 100%
+
+Training data — 80%     - Used to fit the model and learn patterns.
+Test data — 20%         - Held aside for final evaluation.
+
+Illustrative split: 80/20 is common, but the appropriate ratio depends on dataset size and the problem.
+
+Training data:
+    Training data is the portion used by the learning algorithm to fit the model.
+    For example, the model sees students' study hours, attendance, previous scores and known exam scores. It adjusts its learned parameters to capture useful relationships.
+
+Testing data:
+    Testing data is held aside during model fitting. Once the model is trained, we use the test examples to evaluate how well it predicts unseen cases.
+    For example, if the model predicts a score of 82 for a student whose actual score is 85, the prediction error is 3 points.
+
+Important: For a reliable evaluation, don't use test results to repeatedly select or tune your model. Use training data and, when appropriate, a separate validation set for model selection; reserve the test set for final evaluation.
+
+4. What is the difference between training, validation and testing?
+Dataset	            Purpose
+Training set	    Learn model parameters
+Validation set	    Compare models and tune settings
+Test set	        Estimate final performance on unseen data
+
+Not every beginner project requires all three sets, but understanding their different roles is essential for ML interviews.
+
+
+5. Interview-ready answers
+Q1. What are features and labels?
+Features are the input variables used by a machine learning model to make predictions. A label is the known target or correct answer that the model learns to predict during supervised training. For example, study hours and attendance can be features, while exam score is the label.
+
+Q2. Why do we split data into training and testing sets?
+We train the model on one portion of the data and evaluate it on separate, unseen examples. This helps us estimate how well the model generalizes beyond the data used for training.
+
+Q3. What is the difference between validation and test data?
+Validation data helps us select models and tune hyperparameters, whereas test data is held aside for a final, less biased evaluation of the selected model.
+
+## 3: Regression vs. Classification
+These are the two main types of tasks in supervised learning. Understanding the difference is essential for choosing the right model and answering ML interview questions.
+
+a. Regression: Predicting a numerical value
+Regression is used when the target is a quantity measured on a numerical scale.
+
+Examples:
+- Predicting a house price: ₹45,00,000
+- Predicting an exam score: 86.5
+- Predicting tomorrow's temperature: 31.2°C
+- Predicting a delivery time: 42 minutes
+
+For example, suppose a model learns from house sizes and their known prices. When given a new house's size, it predicts its price.
+
+The prediction may be inaccurate, so later we measure the difference between predicted and actual values.
+
+Common regression algorithms include Linear Regression and Decision Tree Regressor.
+b. Classification: Predicting a category
+Classification is used when the target is a class or category.
+
+Examples:
+- Email: spam or not spam
+- Transaction: fraudulent or legitimate
+- Customer: likely to churn or not likely to churn
+- Image: cat, dog, or bird
+
+For example, a spam classifier learns from emails labeled spam or not spam, then predicts a category for a new email.
+
+Some classifiers also output probabilities. A model might estimate an 85% probability that an email is spam, then assign the class according to a decision threshold.
+
+Common classification algorithms include Logistic Regression, Decision Tree Classifier, and Random Forest Classifier.
+
+c. The key difference
+Aspect	                Regression	                Classification
+What it predicts	    Numerical value	            Category or class
+Example target	        House price: ₹45 lakh	    Fraud: yes/no
+Example algorithm	    Linear Regression	        Logistic Regression
+Common metrics	        MAE, MSE, RMSE, \(R^2\)	    Accuracy, precision, recall, F1
+Typical question	    “How much?”	                “Which category?”
+
+One important interview detail: despite its name, Logistic Regression is generally used for classification, because it estimates class probabilities and assigns classes rather than directly predicting an unrestricted numerical quantity.
+
+d. Interview-ready answer
+
+Question: What is the difference between regression and classification?
+    Regression predicts a numerical value, such as a house price or exam score, whereas classification predicts a discrete class, such as spam versus not spam or fraudulent versus legitimate. The choice depends on the target variable and the business problem. Regression is often evaluated using metrics such as MAE or RMSE, while classification may use accuracy, precision, recall, and  F1-score.
+
