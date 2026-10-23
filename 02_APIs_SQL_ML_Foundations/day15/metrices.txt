@@ -1,0 +1,43 @@
+Understand the prediction errors
+Suppose our model predicts students' exam scores:
+Student	    Actual score	Predicted score	    Absolute error
+    A	    80	            75	                5
+    B	    60	            70	                10
+    C	    90	            85	                5
+
+The prediction error is the difference between the actual and predicted values. For these metrics, we measure how far predictions are from the actual values.
+
+Three metrics to learn
+1. MAE — Mean Absolute Error
+The average absolute difference between actual and predicted scores.
+    MAE = {5+10+5}/{3} = 6.67
+
+Easy to interpret: predictions are off by about 6.67 score points on average.
+
+2. MSE — Mean Squared Error
+Square each error before calculating the average.
+    MSE = {5^2+10^2+5^2}/{3} = 50
+
+Larger errors receive a stronger penalty because errors are squared.
+
+3. RMSE — Root Mean Squared Error
+Take the square root of MSE.
+    RMSE = (50)^0.5 = 7.07
+
+Expressed in the same units as the exam scores, making it easier to interpret than MSE.
+
+Remember these interview points
+- MAE: Average absolute prediction error; straightforward to interpret.
+- MSE: Average squared prediction error; strongly penalizes large errors.
+- RMSE: Square root of MSE; expressed in the target's original units.
+For all three metrics, lower is generally better when comparing models on the same test data and target.
+
+Interview-ready questions:
+1. Why does the baseline predict 64.375 for both test examples?
+A mean baseline predicts the average target value from the training data for every input. It gives us a simple benchmark against which to compare a trained model.
+
+2. Which model performed better, and what evidence supports your answer?
+Linear Regression outperformed the mean baseline on this test set because it had lower MAE, MSE, and RMSE. These results indicate more accurate predictions on the two held-out examples.
+
+3. Why should we be careful about trusting a result based on only two test examples?
+Two test examples are insufficient to reliably estimate generalization performance. The measured errors could change substantially on a larger, representative test set, so we should validate the model with more data or cross-validation.
