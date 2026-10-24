@@ -1,0 +1,36 @@
+The five essential concepts
+
+A. Imputation
+Replaces missing values using a rule learned from available data.
+- Numerical: median or mean.
+- Categorical: most frequent category.
+Example: fill a missing salary with the median salary calculated from the training data.
+
+B. Feature scaling
+Brings numerical features onto comparable scales.
+
+StandardScaler transforms values using the training mean and standard deviation. Scaling is useful for models such as Logistic Regression and KNN, though not usually necessary for tree-based models.
+
+C. Categorical encoding
+Converts categories into numerical columns.
+
+OneHotEncoder(handle_unknown="ignore") creates indicator columns for categories and safely handles unseen categories during transformation.
+
+D. ColumnTransformer
+Applies different preprocessing steps to different columns—for example, scaling Age and Salary while encoding City.
+
+E. Pipeline
+Connects preprocessing and model training into one repeatable workflow. It reduces manual steps and helps keep training and prediction transformations consistent.
+
+The most important rule: prevent data leakage
+                Original dataset
+                Features and target
+                        |
+                Split into training and test sets
+
+    Training data                                           Test data
+Fit imputer, scaler, encoder and model         Transform using fitted training steps, then evaluate
+
+Why? If preprocessing learns statistics from the test set, information from that set can influence training. This can make evaluation misleading.
+
+The correct approach is to split first, then call fit() through the pipeline on training data. For test data, use predict() or transform() as appropriate—never fit preprocessing again on the test set.
