@@ -1,0 +1,20 @@
+1. What is cross-validation?
+A single train/test split can give an unreliable estimate, especially with a small dataset. K-fold cross-validation divides the training data into \(K\) parts, called folds.
+
+2. What are hyperparameters?
+Hyperparameters are settings chosen before model training. They are different from the model’s learned parameters.
+Model	                        Example hyperparameter
+Decision Tree	                     max_depth
+Random Forest	                     n_estimators
+Logistic Regression	                 C
+K-Nearest Neighbors	                 n_neighbors
+
+GridSearchCV tests specified combinations and uses cross-validation to compare them.
+
+3. What is class imbalance?
+Suppose a fraud dataset contains 99,000 legitimate transactions and 1,000 fraudulent transactions. A model that always predicts “legitimate” gets 99% accuracy but detects no fraud.
+
+For imbalanced classification, precision, recall, F1 score, and the confusion matrix can be more informative than accuracy alone.
+
+4. Avoid data leakage
+Keep a final test set separate. Use cross-validation and tuning only on the training data, ideally with preprocessing inside a scikit-learn Pipeline. Evaluate the selected model on the final test set after tuning.
