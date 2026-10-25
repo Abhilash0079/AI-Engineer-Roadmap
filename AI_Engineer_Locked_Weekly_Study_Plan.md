@@ -29,6 +29,12 @@
 ## Week 4 · November 6–12 — Deep Learning and NLP
 
 - Tensors and Neural Networks
+- Neural Network Training and Evaluation
+- Deep Learning with Real Data
+- NLP Fundamentals and Text Preprocessing
+- Text Representation and Embeddings
+- NLP Modeling and Transformer Fundamentals
+- NLP Mini-Project and Week Review
 
 ## Week 5 · November 13–19 — LLM Application Development
 

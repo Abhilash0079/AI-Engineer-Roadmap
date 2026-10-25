@@ -1,0 +1,71 @@
+Topic: Neural network training and evaluation
+
+Today we'll build on yesterday's training script. The main difference is that a low training loss alone does not prove a model performs well on unseen data.
+1. Training, validation, and test data
+    Training set: The model uses these examples to update its weights and biases.
+    Validation set: Use it to compare models, tune hyperparameters, and decide when to stop training.
+    Test set: Use it for a final, unbiased estimate of performance on unseen examples after model choices are complete.
+
+For example, with 1,000 labeled examples, you might start with 700 for training, 150 for validation, and 150 for testing. These proportions are illustrative, not mandatory.
+
+2. Overfitting and underfitting
+    Overfitting: The model learns the training data too closely, including noise, and performs poorly on unseen data.
+
+    Underfitting: The model has not learned the underlying patterns sufficiently, so its performance is poor even on training data.
+
+Common ways to reduce overfitting include more representative training data, regularization, dropout, early stopping, and reducing model complexity.
+
+3. Learning curves
+    During training, monitor both training loss and validation loss.
+    - If both remain high, the model may be underfitting.
+    - If training loss falls while validation loss rises, the model may be overfitting.
+    - If both are low and reasonably close, the model may generalize well, though the final test evaluation is still needed.
+
+4. Evaluation metrics
+    The correct metric depends on the task.
+    Task	                        Common metrics
+    Regression	                    MAE, MSE, RMSE, \(R^2\)
+    Classification	                Accuracy, precision, recall, F1-score
+    Imbalanced classification	    Precision, recall, F1-score, PR-AUC or ROC-AUC as appropriate
+
+Accuracy alone can be misleading when one class is much more common than another.
+
+MAE — Mean Absolute Error
+    Calculates the average absolute difference between actual and predicted values. It treats errors proportionally.
+
+MSE — Mean Squared Error
+    Calculates the average squared difference. It penalizes larger errors more heavily because the errors are squared.
+
+1. What is the difference between training and validation data?
+    Training data updates the model's parameters. Validation data helps assess performance during development and select hyperparameters.
+
+2. What is a test set?
+    A test set estimates how well the final chosen model performs on unseen data. It should not be repeatedly used to tune the model.
+
+3. How can you detect overfitting?
+    Monitor training and validation metrics. If training loss decreases while validation loss starts increasing, the model may be overfitting.
+
+4. How can you reduce overfitting?
+    Use regularization, dropout, early stopping, more representative data, or a simpler model.
+
+5. What is early stopping?
+    A technique that stops training when validation performance stops improving, according to a chosen rule or patience setting.
+
+6. What is a hyperparameter?
+    A setting chosen before or during model development, such as learning rate, batch size, or network size. It differs from learned parameters such as weights and biases.
+
+7. Why is accuracy insufficient for imbalanced classification?
+    A model can predict the majority class most of the time and still miss many minority-class examples. Precision, recall, F1-score, and suitable ranking metrics can reveal this problem.
+
+8. When would you use MAE instead of MSE?
+    MAE is useful when you want an error measure that is less sensitive to large individual errors. MSE gives larger errors disproportionately greater influence.
+
+optimizer.zero_grad() — Partially correct. It does not reset the optimizer itself or reset an epoch. It clears the gradients stored on the model parameters before calculating gradients for the next training batch. PyTorch accumulates gradients by default, so clearing them prevents unintended accumulation.
+
+The training sequence is:
+        1. optimizer.zero_grad()            2. loss.backward()                      3. optimizer.step()
+            Clear old gradients                 Calculate new gradients                 Update model parameters
+
+2. model.eval() and torch.no_grad() — Correct. The first switches the model into evaluation mode; the second disables gradient tracking, reducing unnecessary computation and memory use.
+
+3. Early stopping — Correct. Validation loss kept improving throughout all 50 epochs, so there were never five consecutive epochs without improvement.
