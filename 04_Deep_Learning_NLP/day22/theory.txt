@@ -1,0 +1,108 @@
+Theory
+1. What is deep learning?
+Deep learning is a branch of machine learning that uses neural networks with multiple layers to learn patterns from data.
+
+For example, a deep-learning model can learn to:
+    - Recognize objects in images.
+    - Understand and classify text.
+    - Generate text and summarize documents.
+    - Identify patterns in complex datasets.
+Traditional machine-learning models often depend more on manually designed features, whereas deep-learning models can learn useful representations directly from raw or minimally processed data.
+
+2. What is a tensor?
+A tensor is a data structure that stores numerical values across zero or more dimensions. PyTorch uses tensors to represent inputs, model parameters, intermediate calculations, and outputs.
+
+Ex: 5       - Scaler - 0 dimensions
+    1,2,3,  - Vector - 1 dimensions
+    1 2
+    3 4     - Matrix - 2 dimensions
+    3-D tensors      - 3 dimensions
+
+In PyTorch, a tensor has properties such as:
+    - Shape: the size along each dimension.
+    - Rank: the number of dimensions.
+    - Data type (dtype): the kind of values stored, such as integers or floating-point numbers.
+    - Device: where the tensor is stored, such as CPU or GPU.
+For example, a tensor with shape (32, 10) contains 32 rows and 10 columns. In a typical ML dataset, that could represent 32 samples, each with 10 features.
+
+3. What is a neural network?
+A neural network is a model made of connected computational units, organized into layers.
+
+                            Input layer                     
+                    Receives the input features
+                    
+                            Hidden layer
+                    Combines inputs using weights and biases
+
+                            Activation function
+                    Adds nonlinearity
+
+                            Output layer
+                    Produces a prediction
+
+A network may contain multiple hidden layers. During training, it adjusts its learnable parameters to reduce prediction errors.
+
+4. Weights and biases
+A simple neuron computes a weighted combination of inputs, adds a bias, and passes the result to an activation function.
+            z = w_1x_1 + w_2x_2 + b
+
+Here:
+    - x_1, x_2: input features.
+    - w_1, w_2: weights that control each input's contribution.
+    - b: bias, an additional learnable parameter.
+    - z: the value before activation.
+Weights and biases are learned during training. They are not usually chosen manually.
+
+5. What is an activation function?
+An activation function transforms a neuron's output. Nonlinear activation functions allow a neural network to learn complex relationships rather than only linear transformations.
+
+Common examples:
+    - ReLU: returns zero for negative inputs and the input itself for positive inputs.
+    - Sigmoid: maps values into the range 0 to 1.
+    - Softmax: converts a vector of scores into values that sum to 1, commonly used for multiclass classification outputs.
+
+6. How does a neural network learn?
+The basic training process is:
+    1. Forward pass: input data travels through the network to produce predictions.
+    2. Loss calculation: a loss function measures the difference between predictions and targets.
+    3. Backpropagation: calculates gradients that indicate how parameters affect the loss.
+    4. Optimization: an optimizer, such as SGD or Adam, updates the parameters.
+    5. Repeat: this process runs across batches and training epochs.
+
+7. Train the neural network:
+    So far, your network makes predictions, but it has not learned from any examples yet. Training  requires comparing predictions with target values, calculating a loss, computing gradients, and updating the model parameters.
+            1. Input features
+            2. Forward pass → predictions
+            3. Loss: compare predictions with targets
+            4. Backpropagation → calculate gradients
+            5. Optimizer → update weights and biases
+    
+    Repeat for multiple epochs until the loss decreases.
+
+Three important components:
+- Loss function: measures how far predictions are from the target values. We’ll use mean squared error (MSE) for this regression example.
+- Backpropagation: calculates how the loss changes with respect to each trainable parameter.
+- Optimizer: uses those gradients to update the parameters. We’ll use stochastic gradient descent (SGD).
+
+Interview questions
+
+Q1. What is a tensor?
+    A tensor is a multidimensional data structure used to store numerical values. In PyTorch, tensors are used for model inputs, parameters, computations, and predictions.
+
+Q2. What is the difference between a tensor's shape and rank?
+    Shape describes the size along each dimension; rank is the number of dimensions. For example, a tensor of shape (32, 10) has rank 2.
+
+Q3. Why is PyTorch used in deep learning?
+    PyTorch provides tensor operations, automatic differentiation, neural-network building blocks, and optimization tools. These make it easier to implement and train deep-learning models.
+
+Q4. What are weights and biases?
+    Weights control the contribution of input values. Biases provide an additional learnable offset. Training adjusts both to improve predictions.
+
+Q5. Why do neural networks need activation functions?
+    Nonlinear activations allow networks to learn nonlinear relationships. Without nonlinear activations between layers, stacking ordinary linear layers is still equivalent to a single linear transformation.
+
+Q6. What is backpropagation?
+    Backpropagation computes gradients of the loss with respect to model parameters. The optimizer uses those gradients to update the parameters.
+
+Q7. What is the difference between an epoch and a batch?
+    An epoch is one complete pass through the training dataset. A batch is a subset of training examples processed together in one step.

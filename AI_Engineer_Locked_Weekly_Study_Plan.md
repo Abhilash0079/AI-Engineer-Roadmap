@@ -28,7 +28,7 @@
 
 ## Week 4 · November 6–12 — Deep Learning and NLP
 
-*Topics and deliverables were not specified in the supplied weekly plan.*
+- Tensors and Neural Networks
 
 ## Week 5 · November 13–19 — LLM Application Development
 
