@@ -1,0 +1,104 @@
+1. The complete data pipeline
+    - Raw dataset: CSV, Excel, database, or other source
+    - Clean and prepare: Handle missing values, encode categories, scale features where needed
+    - Split the dataset: Training, Validation and Test
+    - Convert to tensors: Features X and target y
+    - Dataset and DataLoader : Organize samples into mini-batches
+    - Train, validate, and test: Learn parameters, select the model, evaluate final performance
+
+2. Features and targets
+Consider a dataset predicting exam scores:
+            Hours studied	Attendance (%)	Exam score
+                2	            70	            55
+                4	            85	            72
+                6	            90	            88
+
+- Features (X): Input columns used by the model, such as hours studied and attendance.
+- Target (y): The value the model must predict, such as exam score.
+Here, there are two input features and one continuous target, so this is a regression problem.
+
+For this example, the feature tensor might have shape (3, 2), and the target tensor might have shape (3, 1).
+
+3. Train, validation, and test splits
+    Split	        Purpose
+    Training	    Learns model weights and biases.
+    Validation	    Helps select hyperparameters and monitor overfitting.
+    Test	        Estimates final performance on held-out data.
+
+A common starting point is a 70% / 15% / 15% split, though the right proportions depend on dataset size and the task.
+
+Important: Fit preprocessing steps such as a scaler or imputer on the training data only, then apply the fitted transformation to validation and test data. This helps prevent data leakage.
+
+4. Converting data into PyTorch tensors
+PyTorch models generally work with tensors rather than raw pandas DataFrames.
+    import torch
+
+    X = torch.tensor(
+        [[2.0, 70.0], [4.0, 85.0], [6.0, 90.0]],
+        dtype=torch.float32,
+    )
+
+    y = torch.tensor(
+        [[55.0], [72.0], [88.0]],
+        dtype=torch.float32,
+    )
+
+    print(X.shape)  # torch.Size([3, 2])
+    print(y.shape)  # torch.Size([3, 1])
+
+Key points:
+    - torch.float32 is a common data type for neural-network inputs and regression targets.
+    - Classification targets may use integer labels with losses such as CrossEntropyLoss.
+    - Tensor shapes must be compatible with the model and its loss function.
+    - Real datasets often need missing-value handling, categorical encoding, and sometimes feature scaling before conversion.
+
+5. Dataset vs. DataLoader
+    Dataset: Stores or provides individual examples and their corresponding targets. For example, a dataset may return one student's features and exam score.
+
+    DataLoader: Retrieves examples from a dataset in batches, can shuffle training examples, and makes it easier to iterate through the data.
+
+For example, with 140 training samples and a batch size of 16, a DataLoader produces 9 batches per epoch: 8 batches of 16 and one batch of 12, assuming the final incomplete batch is retained.
+
+6. Why mini-batches matter
+Mini-batch training processes a subset of the dataset at a time rather than the entire dataset in one forward and backward pass.
+
+Benefits include:
+    - Lower memory requirements than processing the whole dataset at once.
+    - Efficient tensor operations.
+    - Multiple parameter updates per epoch.
+    - The ability to shuffle training samples between epochs.
+Training data is commonly shuffled; validation and test data generally do not need to be shuffled for evaluation.
+
+1. Why should we split data before fitting a scaler?
+To avoid data leakage. Fit the scaler using only training data, then use that same fitted scaler to transform validation and test data.
+
+2. Why use torch.float32 for features?
+It is a common floating-point type supported by neural-network layers and is suitable for representing continuous numerical inputs.
+
+3. What happens if feature and target shapes are incompatible?
+The model or loss calculation may raise a shape error, or unintended broadcasting may produce incorrect calculations. We should verify tensor shapes before training.
+
+4. Why shuffle the training data?
+Shuffling reduces dependence on the original sample order and can help the model learn more robustly. It is especially useful when the data is ordered by class, time, or another meaningful property. Time-series data requires special care and should not be shuffled indiscriminately across time-based splits.
+
+5. What does an epoch mean?
+One complete pass through the training dataset. If a training loader has 9 batches, one epoch normally involves 9 training-batch iterations.
+
+6. What is the difference between batch size and the number of epochs?
+- Batch size: the number of samples processed in one batch.
+- Epochs: the number of complete passes through the training dataset.
+
+7. What is TensorDataset?
+A PyTorch utility that wraps tensors of matching sample length into a dataset. Indexing it returns corresponding samples from each tensor.
+
+8. Why should we keep a separate test set?
+To obtain a final evaluation on data that was not used for training or model selection. Repeatedly tuning based on test results weakens its independence.
+
+9. How should we handle missing values and categorical columns before converting real data to tensors?
+Handle missing values using an appropriate strategy, encode categorical features numerically, and ensure the resulting tensors have compatible data types and shapes. Fit learned preprocessing only on training data.
+
+10. What is drop_last in a PyTorch DataLoader?
+- drop_last=False retains the final incomplete batch.
+- drop_last=True discards it.
+For 140 samples and batch size 16, setting drop_last=True produces 8 batches and drops the remaining 12 samples for that epoch.
+
