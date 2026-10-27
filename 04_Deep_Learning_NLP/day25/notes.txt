@@ -1,0 +1,96 @@
+NLP Fundamentals and Text Preprocessing:
+
+1. What is NLP?
+Natural Language Processing (NLP) is a field of AI that enables computers to work with human language, such as English or Hindi.
+
+Examples of NLP applications:
+Spam detection: Classify emails or messages as spam or legitimate.
+Sentiment analysis: Identify whether a review expresses positive, negative, or neutral sentiment.
+Chatbots and AI assistants: Process user messages and generate appropriate responses.
+
+2. Why does text preprocessing matter?
+Computers do not automatically understand raw text as meaningful language. Before many NLP models can use text, we need to transform it into a suitable representation.
+
+Consider this example:
+Original text               The QUICK foxes are running!
+After basic normalization   the quick foxes are running
+
+Lowercasing and removing punctuation are two possible preprocessing steps. Whether to apply them depends on the task.
+
+Common preprocessing operations include:
+    - Lowercasing: Convert letters to lowercase.
+    - Tokenization: Split text into units such as words or subwords.
+    - Stop-word handling: Optionally remove frequent words such as “the” or “is.”
+    - Stemming: Reduce words to approximate roots.
+    - Lemmatization: Reduce words to dictionary forms.
+    - Whitespace and punctuation handling: Normalize or remove unwanted characters when appropriate.
+Important: preprocessing is not about removing as much text as possible. For example, removing the word “not” could reverse the meaning of “This product is not good.”
+
+3. Core NLP concepts
+A. Tokenization     Tokenization breaks text into smaller units called tokens.
+Example: 
+Input sentence      Python makes text processing easier
+Word tokens         Python  makes   text    processing      easier
+
+Modern transformer models often use subword tokenization, which can split an unfamiliar word into smaller pieces instead of treating the entire word as one token.
+
+B. Stemming vs. lemmatization
+Aspect	    Stemming	                                    Lemmatization
+Method	    Removes or modifies word endings using rules	Uses linguistic information
+Result	    May produce a non-dictionary form	            Usually produces a dictionary form
+Example	    studies → studi	                                studies → study
+Speed	    Generally faster	                            Often more computationally expensive
+
+For another example, the word running may be reduced to run by either method, depending on the algorithm and configuration.
+
+C. Stop words
+Stop words are frequent words such as “the,” “is,” and “and.” Some NLP pipelines remove them to reduce the amount of text being processed.
+
+However, stop-word removal is optional. These words can carry useful meaning, especially in sentiment analysis, question answering, and transformer-based models.
+
+D. Text normalization
+Normalization makes text more consistent.
+
+Examples include:
+    - Converting HELLO to hello.
+    - Replacing repeated whitespace with a single space.
+    - Standardizing certain punctuation or Unicode characters.
+    - Handling URLs, email addresses, or numbers according to the task.
+Do not automatically remove numbers, punctuation, or special symbols. They may contain useful information, such as prices, dates, or emotional emphasis.
+
+4. The NLP preprocessing pipeline
+        Raw text                Original sentence or document
+        Normalization           Clean and standardize where appropriate
+        Tokenization            Split into words or subwords
+        Optional processing     Stop words, stemming, or lemmatization if suitable
+        Text representation     Convert tokens into numerical inputs
+
+This is a general workflow, not a mandatory sequence. In modern NLP, pretrained tokenizers often perform normalization and subword tokenization together. Some models work best with minimal manual preprocessing.
+
+
+5. Interview questions and answers
+Read these carefully; they are part of today's theory checkpoint.
+
+Q1. What is NLP?
+    NLP is a branch of AI that enables computers to process, analyze, and generate human language.
+
+Q2. What is tokenization?
+    Tokenization divides text into smaller units called tokens, such as words, subwords, or characters.
+
+Q3. What is the difference between stemming and lemmatization?
+    Stemming applies rules to reduce words, sometimes producing non-dictionary forms. Lemmatization uses linguistic information to find a dictionary form.
+
+Q4. What are stop words?
+    They are frequently occurring words that some text-processing pipelines remove when doing so is appropriate for the task.
+
+Q5. Why is lowercasing used?
+    It can make words such as Python and python consistent and reduce vocabulary size. However, it may remove meaningful distinctions in some tasks.
+
+Q6. Should punctuation always be removed?
+    No. Punctuation can convey meaning, sentiment, sentence boundaries, or structure. Its treatment depends on the task and model.
+
+Q7. Why shouldn't we remove the word “not” automatically?
+    Because it changes meaning. “Good” and “not good” express different sentiments.
+
+Q8. Why do NLP models need numerical text representations?
+    Machine-learning models operate on numerical inputs. Text must be represented numerically, for example using token IDs, TF-IDF features, or embeddings.

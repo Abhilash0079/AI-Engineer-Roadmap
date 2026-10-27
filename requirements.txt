@@ -7,3 +7,4 @@ scikit-learn
 httpx
 pytest
 torch
+nltk
