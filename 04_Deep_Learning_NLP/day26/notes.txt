@@ -1,0 +1,92 @@
+Text Representation and Embeddings:
+
+Why does text need numerical representation?
+    A computer can store text as strings, but most traditional machine-learning algorithms need numerical features to perform calculations.
+
+For example, a review such as:
+    "The product is good"
+must be transformed into numbers before a traditional ML model can process it as input.
+
+Concept 2: The three techniques for today
+1. Bag of Words (BoW): Represents text using word counts. It generally ignores word order.
+    Example: "good good product" → good: 2, product: 1
+
+2. TF-IDF: Gives greater weight to terms that are frequent in a document but less common across the collection of documents.
+Useful for identifying terms that distinguish one document from others.
+
+3. Word embeddings: Represent words or text as dense numerical vectors that can capture semantic relationships.
+    Modern examples include Word2Vec, GloVe, and embedding models used with transformers.
+
+Concept 3: Bag of Words example
+Suppose our two documents are:
+    - Document 1: good product
+    - Document 2: good service
+The combined vocabulary is good, product, service. The word-count vectors become:
+Document	good	    product	        service
+Document1      1	          1	            0
+Document2	   1	          0	            1
+
+Each row is now a numerical representation of a document.
+Notice that BoW doesn't preserve word order. For instance, "good product" and "product good" have the same word counts.
+
+Concept 4: What is the difference between BoW and TF-IDF?
+    - BoW counts occurrences of words.
+    - TF-IDF adjusts term weights based on how common the words are across the document collection.
+A word appearing in nearly every document may be less useful for distinguishing documents than a word concentrated in just a few documents.
+
+Concept 5: What are embeddings?
+An embedding represents a word, sentence, or document as a vector of numbers. Unlike basic word counts, embeddings can capture similarities in meaning, depending on how the embedding model was trained.
+    For example, an embedding model may place the words king and queen closer together than king and banana in vector space. This is an illustrative example, not a guaranteed result for every model.
+
+Q1. Why do we convert text into numerical features?
+    Most traditional ML algorithms operate on numerical inputs. Text vectorization transforms language into numbers that these algorithms can process.
+
+Q2. What is Bag of Words?
+    Bag of Words represents a document using counts or occurrences of vocabulary terms, usually without preserving word order.
+
+Q3. What is TF-IDF?
+    TF-IDF stands for Term Frequency–Inverse Document Frequency. It weights terms according to their frequency in a document and their rarity across a collection of documents.
+
+Q4. What is a vocabulary in text vectorization?
+    It is the collection of terms recognized by the vectorizer. Each vocabulary term corresponds to a feature position in the resulting vectors.
+
+Q5. What is a sparse matrix?
+    A sparse matrix contains mostly zero values. Text vectors are often sparse because each document uses only a small fraction of the vocabulary.
+
+Q6. What is the difference between sparse and dense vectors?
+    Sparse vectors store or represent mostly zero-valued features efficiently. Dense vectors contain a numerical value in each dimension and are common in embedding representations.
+
+Q7. What is a word embedding?
+    A word embedding is a dense numerical vector learned to represent a word's relationships or context within language.
+
+Q8. What is data leakage when using a text vectorizer?
+    If a vectorizer learns its vocabulary or IDF statistics from the test set, information from evaluation data leaks into training. Fit the vectorizer on training text only, then transform validation and test text.
+
+
+
+Word embeddings fundamentals
+
+Understand sparse vs dense representations
+Feature	                    BoW / TF-IDF	                    Word embeddings
+Representation	            Usually sparse	                    Usually dense
+Values	                    Counts or weights	                Learned numerical values
+Vocabulary	                Explicit vocabulary features	    Learned vector representation
+Semantic relationships	    Limited	                            Can capture semantic relationships
+
+Example:
+# Sparse representation
+bow_vector = [1, 0, 0, 1, 0]
+
+# Dense embedding representation
+embedding_vector = [0.21, 0.65, -0.32, 0.48]
+
+Understand popular embedding techniques
+1. Word2Vec: Learns word vectors using surrounding word context.
+2. GloVe: Learns word vectors using global word co-occurrence statistics.
+3. FastText: Uses character-level subword information to help represent words, including some unseen words.
+
+Understand cosine similarity
+Cosine similarity measures the angle-based similarity between two numerical vectors.
+- Close to 1: similar direction.
+- Close to 0: approximately orthogonal.
+- Close to -1: opposite direction.
