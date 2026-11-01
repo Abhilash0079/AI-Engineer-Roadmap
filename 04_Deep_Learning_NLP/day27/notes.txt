@@ -1,0 +1,142 @@
+NLP Modeling Fundamentals:
+
+1. What is NLP modeling?
+NLP modeling is the process of training or using machine-learning and deep-learning models to understand, classify, or generate human language.
+
+Examples:
+- Sentiment analysis
+- Spam detection
+- Text classification
+- Language translation
+- Text summarization
+- Question answering
+- Chatbots
+
+The general workflow is:
+    - Raw text:   "This movie is excellent"
+    - Text preprocessing and tokenization
+    - Numerical representation
+    - NLP model
+    - Prediction:  Positive sentiment
+
+2. What is text classification?
+Text classification assigns predefined categories or labels to text.
+
+Examples:
+Input text	                                    Predicted class
+"You won a free prize!"	                        Spam
+"Your meeting is at 10 AM."	                    Not spam
+"The product is excellent."	                    Positive
+"The service was terrible."	                    Negative
+
+Common applications:
+    - Email spam detection
+    - Sentiment analysis
+    - News categorization
+    - Customer feedback classification
+    - Support-ticket routing
+
+3. What is sequence modeling?
+A sequence is an ordered collection of elements. In NLP, a sentence is a sequence of words or tokens.
+
+For example:    I love machine learning
+
+The order of the words matters. Traditional models such as basic Bag of Words do not preserve this order.
+
+Earlier sequence-modeling approaches include:
+    - RNN (Recurrent Neural Network): Processes sequence elements one by one while maintaining a hidden state.
+    - LSTM (Long Short-Term Memory): An RNN architecture designed to retain information over longer sequences.
+    - GRU (Gated Recurrent Unit): A gated RNN architecture with a simpler structure than LSTM.
+
+Transformers use attention mechanisms rather than relying on recurrent processing.
+
+4. What is attention?
+Attention allows a model to focus on relevant parts of the input when processing a particular token.
+
+Consider:
+The animal didn't cross the road because it was tired.
+
+To interpret the word "it", the model needs to consider the surrounding context. Attention helps the model relate words to other relevant words in the sequence.
+
+5. What is self-attention?
+Self-attention is an attention mechanism in which tokens in a sequence calculate relationships with other tokens in that same sequence.
+
+It uses three important components:
+    - Query (Q): What information is this token looking for?
+    - Key (K): What information does another token offer?
+    - Value (V): What information is passed along?
+Self-attention calculates attention scores and uses them to combine information from the value vectors.
+
+6. What is a Transformer?
+A Transformer is a neural-network architecture based on attention mechanisms.
+
+The original Transformer architecture was introduced in the 2017 research paper Attention Is All You Need.
+
+Its important components include:
+    - Token embeddings
+    - Positional encoding
+    - Multi-head self-attention
+    - Feed-forward neural networks
+    - Residual connections
+    - Layer normalization
+Transformers can process relationships between tokens without processing every token sequentially like a traditional RNN.
+
+7. What are pretrained models?
+A pretrained model is a model that has already learned useful patterns from a large dataset.
+
+Instead of training a model completely from scratch, we can reuse its learned knowledge for a particular task.
+
+Examples:
+    - BERT
+    - DistilBERT
+    - RoBERTa
+    - GPT
+
+8. What is transfer learning?
+Transfer learning means taking knowledge learned by a model on one task or dataset and applying it to another related task.
+
+For example:
+1. A model learns language patterns from a large text dataset.
+2. We reuse that model for sentiment classification.
+3. We can use it directly for inference or fine-tune it using labeled sentiment data.
+
+Important distinction:
+    - Pretrained model: already learned from previous training.
+    - Fine-tuning: further training a pretrained model for a specific task.
+    - Inference: using a trained model to generate predictions.
+
+Interview Questions and Answers:
+
+Q1. What is text classification?
+    Text classification is an NLP task that assigns predefined labels to text, such as spam/not spam or positive/negative sentiment.
+
+Q2. What is the difference between RNN and Transformer?
+    RNN processes sequence elements step by step and maintains a hidden state. Transformers use attention to model relationships between tokens and can process tokens in parallel during training.
+
+Q3. What is attention in NLP?
+    Attention allows a model to assign different importance to different parts of the input based on the current processing context.
+
+Q4. What is self-attention?
+    Self-attention calculates relationships between tokens within the same input sequence using query, key, and value representations.
+
+Q5. What are Query, Key, and Value?
+    They are three representations used by attention:
+        - Query represents what a token is looking for.
+        - Key represents what a token offers for matching.
+        - Value contains the information used to produce the attention output.
+
+Q6. What is a Transformer?
+    A Transformer is a neural-network architecture that uses attention mechanisms to model relationships between elements in sequential data.
+
+Q7. What is the difference between pretrained models and fine-tuning?
+    A pretrained model has already learned patterns from earlier training. Fine-tuning continues training that model on task-specific data.
+
+Q8. What is inference?
+    Inference is the process of using a trained model to make predictions on new input data.
+
+Q9. What is BERT?
+    BERT stands for Bidirectional Encoder Representations from Transformers. It learns contextual representations by considering both left and right context.
+
+Q10. What is the difference between BERT and GPT?
+    BERT is an encoder-based Transformer model commonly used for language understanding tasks. GPT is a decoder-based Transformer model commonly used for autoregressive text generation.
+
