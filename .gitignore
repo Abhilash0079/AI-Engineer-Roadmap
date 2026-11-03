@@ -4,3 +4,11 @@ __pycache__/
 *.log
 .pytest_cache/
 *.pyc
+# Day 28 - IMDb dataset
+04_Deep_Learning_NLP/day28/large_movie_review_dataset/
+
+# Day 28 - Generated model artifacts
+04_Deep_Learning_NLP/day28/saved_models/*.pkl
+
+# Python test cache
+.pytest_cache/

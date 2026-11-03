@@ -8,3 +8,6 @@ httpx
 pytest
 torch
 nltk
+matplotlib
+seaborn
+joblib
