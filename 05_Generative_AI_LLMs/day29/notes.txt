@@ -1,0 +1,117 @@
+Understand LLM APIs
+1. What is an LLM?
+A Large Language Model is an AI model trained on large amounts of text and other data to understand and generate human-like language.
+
+Examples include:
+- GPT
+- Claude
+- Gemini
+- Llama
+An LLM can answer questions, summarize text, generate code, and perform other language tasks.
+
+2. What is an LLM API?
+An API (Application Programming Interface) allows one software application to communicate with another.
+
+An LLM API allows your Python application to send a request to an LLM and receive its generated response.
+
+For example, imagine you build a Python chatbot:
+    1. User:                    "Explain Python decorators."
+    2. Python application:      Prepares and sends an API request
+    3. LLM API:                 Sends the prompt to the model
+    4. LLM response:            Generates an explanation
+    5. Python application:      Displays the response to the user
+
+
+3. How does an API request work?
+A typical LLM API interaction has four important parts:
+Component	        Purpose
+API key	            Authenticates your application
+Request	            Sends instructions and input to the model
+Messages	        Provide system, user, and sometimes assistant content
+Response object	    Contains the generated answer and other metadata
+
+For example, conceptually:
+    response = client.chat.completions.create(
+        model="model-name",
+        messages=[
+            {"role": "user", "content": "Explain Python decorators."}
+        ]
+    )
+
+    print(response.choices[0].message.content)
+
+This is an illustrative example of the chat-completions interface. We will use the appropriate API and SDK when building the actual application.
+
+4. Model vs. LLM application
+This is an important interview question.
+- LLM: The underlying AI model that generates responses.
+- LLM application: The complete software system built around the model.
+
+For example, GPT is a model. A Python chatbot that uses an LLM API, accepts user input, manages conversation history, handles errors, and displays responses is an LLM application.
+
+Understand LLM API request structure:
+Before writing our chatbot, let's understand the three message roles and how an API response is structured.
+
+An LLM conversation commonly uses these roles:
+Role	            Purpose
+system	            Defines the assistant's behavior and instructions
+user	            Contains the user's question or input
+assistant	        Contains the assistant's response
+
+Example:
+    messages = [
+    {
+        "role": "system",
+        "content": "You are a helpful Python tutor."
+    },
+    {
+        "role": "user",
+        "content": "Explain Python decorators."
+    }
+]
+
+The system message provides instructions, while the user message contains the actual question.
+
+How conversation history works
+Suppose a user asks two questions:
+1. What is Python?
+2. What are its advantages?
+
+To maintain context, the application can send earlier messages along with the latest question:
+messages = [
+    {"role": "system", "content": "You are a helpful Python tutor."},
+    {"role": "user", "content": "What is Python?"},
+    {"role": "assistant", "content": "Python is a programming language."},
+    {"role": "user", "content": "What are its advantages?"}
+]
+
+This is called conversation history. The model can use the earlier exchange when answering the latest question.
+
+Understand the API response
+A chat-completions response typically contains:
+- choices: generated completion choices.
+- message: the generated assistant message.
+- content: the actual text response.
+- usage: token usage information, when provided.
+
+For example, with the chat-completions interface:
+answer = response.choices[0].message.content
+print(answer)
+
+Here:
+- choices[0] selects the first generated choice.
+- .message accesses the assistant message.
+- .content extracts its text.
+The exact response structure depends on the API interface being used.
+
+Important interview concepts:
+
+What is a token?
+    A token is a unit of text processed by a language model. It may be a whole word, part of a word, punctuation, or another text unit.
+
+What is a context window?
+    The context window is the amount of input and conversation information a model can process in a single interaction. It is measured in tokens.
+
+Why does conversation history matter?
+    It allows the application to provide earlier context so the model can answer follow-up questions more coherently.
+

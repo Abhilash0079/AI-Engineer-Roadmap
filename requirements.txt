@@ -11,3 +11,5 @@ nltk
 matplotlib
 seaborn
 joblib
+openai
+python-dotenv
