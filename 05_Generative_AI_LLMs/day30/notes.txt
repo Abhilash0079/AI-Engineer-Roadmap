@@ -1,0 +1,137 @@
+Understand prompt engineering
+1. What is a prompt?
+A prompt is the input or instruction given to an LLM to guide its response.
+
+For example:
+
+Basic prompt:   Explain Python.
+
+Improved prompt:    
+    Explain Python to a beginner.
+
+    Cover:
+    1. What Python is.
+    2. Its main features.
+    3. Three practical use cases.
+
+    Use simple English and provide a short code example.
+
+The improved prompt gives the model more direction.
+2. Four important components of a good prompt
+Component	            Purpose
+Instructions	        Tell the model what to do.
+Context	                Provide relevant background information.
+Examples	            Demonstrate the expected response pattern.
+Output constraints	    Specify the required format, length, or structure.
+
+3. Understand each component
+A. Instructions
+
+Tell the model what task to perform.
+Summarize the following article.
+
+B. Context
+
+Provide background information needed to complete the task.
+    The summary is intended for a beginner learning about artificial intelligence.
+
+C. Examples
+
+Show the model an example of the desired output.
+
+Example:
+
+Input: Python is a programming language.
+Output: Python is used for programming.
+
+D. Output constraints
+
+Control the structure and length of the response.
+Return exactly five bullet points.
+Use simple English.
+Keep each bullet under 20 words.
+
+4. Basic prompt structure
+    Instructions:           What should the model do?
+    Context:                What information does it need?
+    Examples:               What should the expected output look like?
+    Output constraints:     How should the answer be formatted?
+
+Not every prompt needs all four components. Use the components that help the particular task.
+
+
+
+Prompt design techniques
+Now let's learn four useful techniques for designing better prompts.
+
+2.1 Zero-shot prompting
+Zero-shot prompting means asking an LLM to perform a task without providing examples.
+
+Example:
+Classify this customer review as Positive or Negative.
+
+Review: The product quality is excellent.
+Expected response:  Positive
+
+When to use: Simple classification, translation, summarization, and question answering.
+
+2.2 One-shot prompting
+One-shot prompting means providing one example before asking the model to perform the task.
+
+Example:
+Classify customer reviews as Positive or Negative.
+
+Example:
+Review: The service was terrible.
+Classification: Negative
+
+Now classify:
+Review: The product quality is excellent.
+Expected response:  Positive
+
+
+2.3 Few-shot prompting
+Few-shot prompting means providing multiple examples to demonstrate the expected task and output pattern.
+
+Example:
+Classify customer reviews as Positive or Negative.
+
+Example 1:
+Review: I love this product.
+Classification: Positive
+
+Example 2:
+Review: The delivery was very late.
+Classification: Negative
+
+Example 3:
+Review: Excellent quality and great service.
+Classification: Positive
+
+Now classify:
+Review: The product stopped working after two days.
+Expected response:  Negative
+
+
+2.4 Role-based prompting
+Role-based prompting assigns a role or perspective to the model.
+
+Example:
+You are an experienced Python backend developer.
+
+Explain FastAPI dependency injection
+to a developer with two years of Python experience.
+
+Use a practical code example.
+
+This helps establish the expected perspective and level of explanation.
+
+
+Comparison
+Technique	Examples provided
+Zero-shot	0
+One-shot	1
+Few-shot	2 or more
+Role-based	Assigns a role
+
+These techniques can also be combined. For example, you can use role-based few-shot prompting.

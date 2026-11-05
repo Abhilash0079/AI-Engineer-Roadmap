@@ -1,0 +1,178 @@
+# Day 30 — Prompt Design: Interview Notes
+
+## 1. What Is Prompt Engineering?
+
+Prompt engineering is the process of designing and improving instructions given to a Large Language Model (LLM) to obtain more useful, accurate, and relevant responses.
+
+A prompt can contain:
+
+- **Instruction:** Tells the model what task to perform.
+- **Context:** Provides relevant background information.
+- **Examples:** Demonstrate the expected input and output.
+- **Output constraints:** Define the required response format, length, or style.
+- **Input data:** Provides the text or information to process.
+
+## 2. Common Prompting Techniques
+
+### Zero-Shot Prompting
+
+The model performs a task without receiving examples.
+
+Example:
+
+```text
+Classify this review as Positive or Negative:
+"The product is excellent."
+```
+
+### One-Shot Prompting
+
+The model receives one example before performing the task.
+
+Example:
+
+```text
+Review: "I love this product."
+Classification: Positive
+
+Review: "The product is terrible."
+Classification:
+```
+
+### Few-Shot Prompting
+
+The model receives multiple examples to demonstrate the expected pattern.
+
+Example:
+
+```text
+Review: "Excellent quality."
+Classification: Positive
+
+Review: "Very poor service."
+Classification: Negative
+
+Review: "I am happy with this purchase."
+Classification:
+```
+
+### Role-Based Prompting
+
+The prompt assigns a role or perspective to the model.
+
+Example:
+
+```text
+You are an experienced Data Scientist.
+
+Explain customer churn prediction
+to a beginner using simple English.
+```
+
+## 3. Important Prompt Components
+
+| Component | Purpose |
+|---|---|
+| Instruction | Defines the task |
+| Context | Provides background |
+| Examples | Demonstrate expected behavior |
+| Output constraints | Control response format |
+| Input data | Supplies information to process |
+
+## 4. Why Use Structured Prompts?
+
+Structured prompts make requirements clearer.
+
+For example, instead of:
+
+```text
+Summarize this article.
+```
+
+Use:
+
+```text
+Summarize this article.
+
+Instructions:
+- Write exactly 5 bullet points.
+- Use simple English.
+- Include the most important information.
+- Avoid unnecessary details.
+```
+
+The second prompt defines specific expectations that can be checked.
+
+## 5. Prompt Evaluation
+
+Prompt evaluation measures whether the generated response satisfies the task requirements.
+
+This project implements four basic rule-based checks:
+
+1. **Bullet-point count:** Counts bullet points in the summary.
+2. **Format compliance:** Checks whether exactly five bullet points are present.
+3. **Word-limit compliance:** Checks whether the summary stays within the specified word limit.
+4. **Keyword coverage:** Checks whether all required phrases appear.
+
+### Limitations of Rule-Based Evaluation
+
+These checks cannot reliably determine:
+
+- Factual correctness.
+- Semantic similarity.
+- Completeness.
+- Context preservation.
+- Hallucinations.
+- Overall response quality.
+
+A summary can pass all formatting checks and still contain incorrect information.
+
+## 6. Common Interview Questions and Answers
+
+### Q1. What is prompt engineering?
+
+Prompt engineering is the process of designing and refining prompts to guide an LLM toward useful and relevant outputs.
+
+### Q2. What is the difference between zero-shot and few-shot prompting?
+
+Zero-shot prompting provides no examples. Few-shot prompting provides multiple examples to demonstrate the expected task behavior.
+
+### Q3. What is one-shot prompting?
+
+One-shot prompting provides one example before asking the model to perform a similar task.
+
+### Q4. What is role-based prompting?
+
+Role-based prompting assigns a role to the model, such as Data Scientist, Python Developer, or Technical Writer, to guide the perspective and style of the response.
+
+### Q5. Why is context important in a prompt?
+
+Context provides background information that helps the model understand the task and produce more relevant responses.
+
+### Q6. What are output constraints?
+
+Output constraints define how the response should be structured, such as JSON format, five bullet points, or a maximum of 100 words.
+
+### Q7. Why are examples useful in prompts?
+
+Examples demonstrate the expected input-output pattern and help the model understand the desired response.
+
+### Q8. What is prompt evaluation?
+
+Prompt evaluation is the process of checking the quality and usefulness of model outputs against defined criteria.
+
+### Q9. Can a response pass format checks but still be incorrect?
+
+Yes. A response can follow all formatting requirements but contain inaccurate or incomplete information.
+
+### Q10. What is hallucination in an LLM?
+
+Hallucination occurs when an LLM generates information that appears convincing but is incorrect, unsupported, or fabricated.
+
+### Q11. What is the difference between prompt testing and output evaluation?
+
+Prompt testing checks prompt construction and expected instructions. Output evaluation checks the actual response generated by a model.
+
+### Q12. How can prompt quality be improved?
+
+Prompt quality can be improved by using clear instructions, relevant context, suitable examples, role descriptions, explicit constraints, and systematic testing
